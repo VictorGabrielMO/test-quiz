@@ -89,7 +89,7 @@ tests.py::test_create_question_with_valid_points PASSED                         
 tests.py::test_create_choice PASSED                                                                [100%]
 =========================================== 5 passed in 0.01s ============================================
 ```
-
+Obs: Os testes falham com versões do python inferiores a 3.9
 ### Faça o commit para executar os testes remotamente (via GitHub Actions)
 
 Os testes serão executados automaticamente no GitHub Actions sempre que um commit é realizado.
