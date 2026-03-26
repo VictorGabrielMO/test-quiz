@@ -180,3 +180,32 @@ def test_initialized_and_set_correct_choices():
         if choice.is_correct:
             right_choices += 1
     assert right_choices == 2
+
+@pytest.fixture
+def question_fixture():
+    question = Question(title='Quest-2')
+    
+    question.add_choice('a', False)
+    question.add_choice('b', True)
+    question.add_choice('c', False)
+    question.add_choice('d', False)
+    
+    return question
+    
+def test_set_correct_choices_with_empty_list(question_fixture):
+    question_fixture.set_correct_choices([])
+    
+    right_choices = 0
+    for choice in question_fixture.choices:
+        if choice.is_correct:
+            right_choices += 1
+    assert right_choices == 1
+
+def test_set_correct_choices_with_empty_list_does_not_change_existing(question_fixture):
+    initial_correct_ids = [c.id for c in question_fixture.choices if c.is_correct]
+    
+    question_fixture.set_correct_choices([])
+    
+    after_correct_ids = [c.id for c in question_fixture.choices if c.is_correct]
+    
+    assert after_correct_ids == initial_correct_ids
